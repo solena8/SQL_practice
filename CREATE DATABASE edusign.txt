@@ -1,0 +1,82 @@
+CREATE DATABASE edusign;
+
+USE edusign;
+
+CREATE TABLE 
+Edusign (
+	    id int auto_increment,
+	    firstname text not null ,
+	    email text not null ,
+	    created_at datetime not null);
+
+CREATE TABLE Edusign (
+	id int auto_increment PRIMARY KEY,
+	firstname text not null ,
+	email text not null ,
+	created_at datetime not null);
+                 
+CREATE TABLE Users (
+	id int auto_increment PRIMARY KEY,
+	firstname text not null ,
+	name text not null ,
+	email text not null ,
+	created_at datetime not null);
+                 
+ALTER TABLE Edusign
+DROP COLUMN email;
+
+ALTER TABLE Edusign
+DROP COLUMN firstname;
+         
+ALTER TABLE Edusign
+ADD COLUMN user_id INT,
+ADD CONSTRAINT fk_user
+FOREIGN KEY (user_id) REFERENCES Users(id);
+
+
+INSERT INTO Users (firstname, name, email) VALUES ('Barbara', 'Chase', 'barbara@test.fr');
+
+INSERT INTO Users (firstname, name, email) VALUES ('Bella', 'Guerin', 'bella@test.fr');
+
+INSERT INTO Users (firstname, name, email) VALUES ('Ada', 'Lovelace', 'ada@test.fr');
+
+INSERT INTO Users (firstname, name, email) VALUES ('Beatrice', 'Worsley', 'bea@test.fr');
+
+SELECT * FROM Users;
+
+SELECT * FROM Users WHERE firstname = "Ada";
+
+SELECT firstname FROM Users WHERE firstname LIKE 'A%';
+
+SELECT firstname FROM Users WHERE firstname LIKE 'B%';
+
+SELECT COUNT(*) FROM Users;
+
+SELECT COUNT(*) FROM Users WHERE firstname LIKE 'B%';
+
+SELECT firstname FROM Users;
+
+INSERT INTO Edusign (created_at, user_id) VALUES ('2024-05-30 09:30:00', '1')
+
+INSERT INTO Edusign (created_at, user_id) VALUES ('2024-05-30 09:30:00', '2')
+
+INSERT INTO Edusign (created_at, user_id)
+SELECT '2024-09-01 09:30:00' , id
+FROM Users;
+
+SELECT * FROM Edusign ORDER BY created_at DESC , user_id ASC ;
+
+SELECT * FROM Edusign WHERE created_at = '2024-05-30 09:30:00';
+
+SELECT created_at, COUNT(*)
+FROM Edusign
+GROUP BY created_at;
+
+SELECT COUNT(*) AS volume
+FROM Edusign
+JOIN Users ON Edusign.user_id = Users.id
+WHERE Users.firstname = 'Bella';
+
+
+
+
