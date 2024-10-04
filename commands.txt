@@ -1,0 +1,28 @@
+>USE edusign
+
+>CREATE TABLE Edusign (
+    id int auto_increment,
+    firstname text not null ,
+    email text not null ,
+    created_at datetime not null
+);
+
+edusign> CREATE TABLE Edusign (
+                 id int auto_increment PRIMARY KEY,
+                 firstname text not null ,
+                 email text not null ,
+                 created_at datetime not null)
+                 
+edusign> CREATE TABLE Users (
+                 id int auto_increment PRIMARY KEY,
+                 firstname text not null ,
+                 name text not null ,
+                 email text not null ,
+                 created_at datetime not null)
+                 
+edusign> ALTER TABLE Edusign
+         DROP COLUMN email
+
+edusign> ALTER TABLE Edusign
+         DROP COLUMN firstname
+
